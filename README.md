@@ -30,7 +30,7 @@ Follow these steps for completing your project.
 - [ ] Submit a Pull-Request to merge <firstName-lastName> Branch into main (student's Repository). **Please don't merge your own pull request**
 - [ ] From the home page of your repo, make sure you have your branch selected
 - [ ] Copy the URL and paste it into Canvas
-  
+
 ## Minimum Viable Product
 
 - [ ] Build a custom hook that let's you save data to localStorage
@@ -54,25 +54,25 @@ This is going to be a pretty cool hook. It will be used pretty much the same way
 // To retrieve an item from localStorage, call localStorage.getItem('itemName')
 // If that item doesn't exist, it will return undefined
 const [storedValue, setStoredValue] = useState(() => {
-  // Get from local storage by key
-  const item = window.localStorage.getItem(key);
-  // Parse and return stored json or, if undefined, return initialValue
-  return item ? JSON.parse(item) : initialValue;
+	// Get from local storage by key
+	const item = window.localStorage.getItem(key);
+	// Parse and return stored json or, if undefined, return initialValue
+	return item ? JSON.parse(item) : initialValue;
 });
 ```
 
 - Now, let's return `storedValue` from this hook in an array:
 
 ```js
-import { useState } from "react";
+import { useState } from 'react';
 
 export const useLocalStorage = (key, initialValue) => {
-  const [storedValue, setStoredValue] = useState(() => {
-    const item = window.localStorage.getItem(key);
-    return item ? JSON.parse(item) : initialValue;
-  });
+	const [storedValue, setStoredValue] = useState(() => {
+		const item = window.localStorage.getItem(key);
+		return item ? JSON.parse(item) : initialValue;
+	});
 
-  return [storedValue];
+	return [storedValue];
 };
 ```
 
@@ -84,11 +84,11 @@ export const useLocalStorage = (key, initialValue) => {
   - `setValue` should look something like this:
 
 ```js
-const setValue = value => {
-  // Save state
-  setStoredValue(value);
-  // Save to local storage
-  window.localStorage.setItem(key, JSON.stringify(value));
+const setValue = (value) => {
+	// Save state
+	setStoredValue(value);
+	// Save to local storage
+	window.localStorage.setItem(key, JSON.stringify(value));
 };
 ```
 
@@ -108,7 +108,7 @@ _In this case `useDarkMode` isn't doing any of it's own logic, just simply compo
 
 Now that we have composed our different pieces of stateful logic, let's use it in our component!
 
-- import the dark mode hook into the `NavBar` component
+- import the dark mode hook into the `App` component
 - Looking at this component, we see that we are controlling the toggle with some state. The state hook here returns a `darkMode` value, and a `setDarkMode` function. Isn't that exactly what our `useDarkMode` hook returns as well? Replace the state hook with our hook, click the toggle, and watch the magic happen!!!
 
 (If it wasn't magical, you have a bug somewhere 😫 go back through the steps slowly, one at a time, to see if you missed any of the steps)
